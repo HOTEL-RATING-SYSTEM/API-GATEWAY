@@ -1,0 +1,21 @@
+# src/main/resources/application-docker.yml
+server:
+  port: 4040
+spring:
+  application:
+    name: Apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://user-service:4010
+          predicates:
+            - Path=/api/user/**
+        - id: hotel-service
+          uri: http://hotel-service:4020
+          predicates:
+            - Path=/api/hotels/**
+        - id: rating-service
+          uri: http://rating-service:4030
+          predicates:
+            - Path=/api/ratings/**
